@@ -102,7 +102,11 @@ class PassSlot(object):
         resource = "/passes/%s/%s/values/%s" % (pspass.passTypeIdentifier, pspass.serialNumber, placeholderName)
         content = {'value': value}
         return self.__call('put', resource, content)
-   
+
+    def delete_pass(self, pspass):
+        resource = "/passes/%s/%s" % (pspass.passTypeIdentifier, pspass.serialNumber)
+        return self.__call('delete', resource)
+
     def __call(self, method, resource, content=None, multipart=False):
 
         headers = {
